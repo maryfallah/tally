@@ -1,0 +1,15 @@
+enum Category {
+  grocery,
+  cafe,
+  transport,
+  health,
+  bills,
+  home,
+  shopping,
+  entertainment,
+  travel,
+  education,
+  pets,
+  kids,
+  other,
+}
