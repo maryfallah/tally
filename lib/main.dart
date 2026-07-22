@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tally/theme/app_theme.dart';
+import 'package:tally/app.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      home: Scaffold(),
-    );
-  }
+  runApp(const TallyApp());
 }
