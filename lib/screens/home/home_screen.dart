@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tally/models/category.dart';
+import 'package:tally/models/expense.dart';
+import 'package:tally/widgets/expense_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,9 +26,27 @@ class HomeScreen extends StatelessWidget {
             child: Text('PIE CHART'),
           ),
 
-          Text('Grocery'),
-          Text("Phone"),
-          Text("Health"),
+          ExpenseCard(
+            expense: Expense(
+              category: Category.grocery,
+              amount: 35,
+              dateTime: DateTime.now(),
+            ),
+          ),
+          ExpenseCard(
+            expense: Expense(
+              category: Category.home,
+              amount: 335,
+              dateTime: DateTime.now(),
+            ),
+          ),
+          ExpenseCard(
+            expense: Expense(
+              category: Category.pets,
+              amount: 100,
+              dateTime: DateTime.now(),
+            ),
+          ),
         ],
       ),
     );
