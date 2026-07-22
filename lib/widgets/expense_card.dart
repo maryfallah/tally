@@ -10,7 +10,6 @@ class ExpenseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      // margin: const EdgeInsets.all(10),
       margin: EdgeInsets.all(2),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
