@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tally/data/dummy_expenses.dart';
 import 'package:tally/models/category.dart';
 import 'package:tally/models/expense.dart';
 import 'package:tally/widgets/expense_card.dart';
@@ -10,8 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Tally')),
-      body: ListView(
-        padding: EdgeInsets.all(8),
+      body: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -26,25 +26,13 @@ class HomeScreen extends StatelessWidget {
             child: Text('PIE CHART'),
           ),
 
-          ExpenseCard(
-            expense: Expense(
-              category: Category.grocery,
-              amount: 35,
-              dateTime: DateTime.now(),
-            ),
-          ),
-          ExpenseCard(
-            expense: Expense(
-              category: Category.home,
-              amount: 335,
-              dateTime: DateTime.now(),
-            ),
-          ),
-          ExpenseCard(
-            expense: Expense(
-              category: Category.pets,
-              amount: 100,
-              dateTime: DateTime.now(),
+          // ...dummyExpenses.map((expense) => ExpenseCard(expense: expense)),
+          Expanded(
+            child: ListView.builder(
+              itemCount: dummyExpenses.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ExpenseCard(expense: dummyExpenses[index]);
+              },
             ),
           ),
         ],
