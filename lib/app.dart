@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tally/screens/home/home_screen.dart';
+import 'package:tally/screens/home_screen.dart';
 import 'package:tally/theme/app_theme.dart';
 
 class TallyApp extends StatelessWidget {

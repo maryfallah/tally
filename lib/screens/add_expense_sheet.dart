@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tally/theme/theme_constants.dart';
+import 'package:tally/widgets/amount_input.dart';
 
 class AddExpenseSheet extends StatelessWidget {
   const AddExpenseSheet({super.key});
@@ -13,14 +15,23 @@ class AddExpenseSheet extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Add Expense',
-                style: Theme.of(context).textTheme.headlineSmall,
+              Row(
+                mainAxisSize: MainAxisSize.min, // don't stretch the Row
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(width: 120, child: AmountInput()),
+
+                  const Text(
+                    'EUR',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: accentColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-              const Text('In development'),
             ],
           ),
         ),
