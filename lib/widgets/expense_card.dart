@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tally/extensions/double_extensions.dart';
 import 'package:tally/models/category.dart';
 import 'package:tally/models/expense.dart';
 
@@ -23,7 +24,7 @@ class ExpenseCard extends StatelessWidget {
               ],
             ),
             Spacer(),
-            Text('€${expense.amount.toStringAsFixed(2)}'),
+            Text('€${expense.amount.formattedCurrency}'),
           ],
         ),
       ),
