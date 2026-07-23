@@ -11,6 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Tally')),
+      floatingActionButton: FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
       body: Column(
         children: [
           Row(
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
             color: Colors.blueGrey,
             child: Text('PIE CHART'),
           ),
+          
 
           // ...dummyExpenses.map((expense) => ExpenseCard(expense: expense)),
           Expanded(
