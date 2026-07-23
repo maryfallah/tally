@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tally/extensions/category_extension.dart';
 import 'package:tally/extensions/double_extensions.dart';
 import 'package:tally/models/category.dart';
 import 'package:tally/models/expense.dart';
@@ -18,7 +19,7 @@ class ExpenseCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(getIcon(expense.category), size: 20),
+                Icon(expense.category.icon, size: 20),
                 const SizedBox(width: 8),
                 Text(expense.category.name),
               ],
