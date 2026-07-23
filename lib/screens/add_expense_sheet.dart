@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tally/theme/theme_constants.dart';
 import 'package:tally/widgets/amount_input.dart';
+import 'package:tally/widgets/category_grid.dart';
 
 class AddExpenseSheet extends StatelessWidget {
   const AddExpenseSheet({super.key});
@@ -32,6 +33,8 @@ class AddExpenseSheet extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 100),
+              CategoryGrid(),
             ],
           ),
         ),
