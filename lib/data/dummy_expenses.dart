@@ -9,6 +9,6 @@ final dummyExpenses = [
   Expense(category: Category.home, amount: 300, dateTime: now),
   Expense(category: Category.health, amount: 250, dateTime: now),
   Expense(category: Category.education, amount: 126, dateTime: now),
-  Expense(category: Category.grocery, amount: 200, dateTime: now),
-  Expense(category: Category.grocery, amount: 150, dateTime: now),
+  Expense(category: Category.groceries, amount: 200, dateTime: now),
+  Expense(category: Category.groceries, amount: 150, dateTime: now),
 ];
