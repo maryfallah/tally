@@ -39,6 +39,15 @@ class AddExpenseSheet extends StatelessWidget {
               Center(child: ExpenseDatePicker()),
               SizedBox(height: 10),
               CategoryGrid(),
+              const SizedBox(height: 24),
+
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Save'),
+                ),
+              ),
             ],
           ),
         ),
