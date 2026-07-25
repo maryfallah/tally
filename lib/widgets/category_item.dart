@@ -35,12 +35,22 @@ class CategoryItem extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(category.icon),
+              Icon(
+                category.icon,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : null,
+              ),
               const SizedBox(height: 6),
               Text(
                 category.name,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
+                ),
               ),
             ],
           ),
