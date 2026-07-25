@@ -16,7 +16,7 @@ extension CategoryExtension on Category {
       case Category.home:
         return Icons.home;
       case Category.clothing:
-        return Icons.shop;
+        return Icons.checkroom;
       case Category.leisure:
         return Icons.tv;
       case Category.travel:

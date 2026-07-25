@@ -33,7 +33,7 @@ class AddExpenseSheet extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 100),
+              SizedBox(height: 50),
               CategoryGrid(),
             ],
           ),
