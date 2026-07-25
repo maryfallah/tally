@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tally/theme/theme_constants.dart';
 import 'package:tally/widgets/amount_input.dart';
 import 'package:tally/widgets/category_grid.dart';
+import 'package:tally/widgets/expense_date_picker.dart';
 
 class AddExpenseSheet extends StatelessWidget {
   const AddExpenseSheet({super.key});
@@ -33,7 +34,10 @@ class AddExpenseSheet extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 10),
+
+              Center(child: ExpenseDatePicker()),
+              SizedBox(height: 10),
               CategoryGrid(),
             ],
           ),
