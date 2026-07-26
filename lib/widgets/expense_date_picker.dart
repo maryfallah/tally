@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ExpenseDatePicker extends StatefulWidget {
-  const ExpenseDatePicker({super.key});
+class ExpenseDatePicker extends StatelessWidget {
+  const ExpenseDatePicker({
+    super.key,
+    required this.selectedDate,
+    required this.onDateChanged,
+  });
 
-  @override
-  State<ExpenseDatePicker> createState() => _ExpenseDatePickerState();
-}
+  final DateTime selectedDate;
+  final ValueChanged<DateTime> onDateChanged;
 
-class _ExpenseDatePickerState extends State<ExpenseDatePicker> {
-  DateTime selectedDate = DateTime.now();
-
-  Future<void> _pickDate() async {
+  Future<void> _pickDate(BuildContext context) async {
     final pickedDate = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime(2020),
       lastDate: DateTime.now(),
     );
-
     if (pickedDate != null) {
-      setState(() {
-        selectedDate = pickedDate;
-      });
+      onDateChanged(pickedDate);
     }
   }
 
@@ -30,7 +27,7 @@ class _ExpenseDatePickerState extends State<ExpenseDatePicker> {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: _pickDate,
+      onTap: () => _pickDate(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Row(

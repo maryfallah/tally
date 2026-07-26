@@ -52,9 +52,18 @@ class _AddExpenseSheetState extends State<AddExpenseSheet> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
-              Center(child: ExpenseDatePicker()),
+              Center(
+                child: ExpenseDatePicker(
+                  selectedDate: selectedDate,
+                  onDateChanged: (date) {
+                    setState(() {
+                      selectedDate = date;
+                    });
+                  },
+                ),
+              ),
               SizedBox(height: 10),
               CategoryGrid(
                 selectedCategory: selectedCategory,
