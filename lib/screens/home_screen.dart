@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tally/data/dummy_expenses.dart';
-import 'package:tally/models/category.dart';
-import 'package:tally/models/expense.dart';
 import 'package:tally/screens/add_expense_sheet.dart';
 import 'package:tally/widgets/expense_card.dart';
 

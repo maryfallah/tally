@@ -33,8 +33,6 @@ extension CategoryExtension on Category {
         return Icons.card_giftcard;
       case Category.workout:
         return Icons.fitness_center;
-        // TODO: Handle this case.
-        throw UnimplementedError();
     }
   }
 }
