@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tally/theme/theme_constants.dart';
 
 class AmountInput extends StatelessWidget {
-  const AmountInput({super.key});
+  const AmountInput({super.key, required TextEditingController controller});
 
   @override
   Widget build(BuildContext context) {
