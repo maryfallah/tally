@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:tally/models/category.dart';
 import 'package:tally/widgets/category_item.dart';
 
-class CategoryGrid extends StatefulWidget {
-  const CategoryGrid({super.key});
+class CategoryGrid extends StatelessWidget {
+  const CategoryGrid({
+    super.key,
+    required this.selectedCategory,
+    required this.onCategorySelected,
+  });
+  final Category? selectedCategory;
+  final ValueChanged<Category> onCategorySelected;
 
-  @override
-  State<CategoryGrid> createState() => _CategoryGridState();
-}
-
-class _CategoryGridState extends State<CategoryGrid> {
-  Category? selectedCategory;
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -20,11 +20,7 @@ class _CategoryGridState extends State<CategoryGrid> {
         return CategoryItem(
           category: category,
           isSelected: category == selectedCategory,
-          onTap: () {
-            setState(() {
-              selectedCategory = category;
-            });
-          },
+          onTap: () => onCategorySelected(category),
         );
       }).toList(),
     );
