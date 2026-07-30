@@ -58,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return ExpenseCard(
                   expense: expenses[index],
-                  onExpenseDismissed: _removeExpense,
+                  onExpenseDismissed: (expense) {
+                    _removeExpense(expense, index);
+                  },
                 );
               },
             ),
@@ -68,9 +70,25 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _removeExpense(Expense expense) {
+  void _removeExpense(Expense expense, int index) {
     setState(() {
-      expenses.remove(expense);
+      expenses.removeAt(index);
     });
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar
+      ..showSnackBar(
+        SnackBar(
+          content: const Text('Expense deleted'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                expenses.insert(index, expense);
+              });
+            },
+          ),
+        ),
+      );
   }
 }
