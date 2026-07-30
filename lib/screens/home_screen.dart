@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:tally/data/dummy_expenses.dart';
+import 'package:tally/models/expense.dart';
 import 'package:tally/screens/add_expense_sheet.dart';
 import 'package:tally/widgets/expense_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final List<Expense> expenses = [...dummyExpenses];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tally')),
+      appBar: AppBar(title: const Text('Tally')),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
+        onPressed: () async {
+          final expense = await showModalBottomSheet<Expense>(
             context: context,
             isScrollControlled: true,
             showDragHandle: true,
@@ -20,30 +28,35 @@ class HomeScreen extends StatelessWidget {
               return const AddExpenseSheet();
             },
           );
+
+          if (expense != null) {
+            setState(() {
+              expenses.add(expense);
+            });
+          }
         },
         child: const Icon(Icons.add),
       ),
       body: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [Text('Day   Month   Year')],
           ),
-          Center(child: Text("<       June 2026      >")),
+          const Center(child: Text("<       June 2026      >")),
 
           Container(
             width: 400,
             height: 400,
             color: Colors.blueGrey,
-            child: Text('PIE CHART'),
+            child: const Text('PIE CHART'),
           ),
 
-          // ...dummyExpenses.map((expense) => ExpenseCard(expense: expense)),
           Expanded(
             child: ListView.builder(
-              itemCount: dummyExpenses.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ExpenseCard(expense: dummyExpenses[index]);
+              itemCount: expenses.length,
+              itemBuilder: (context, index) {
+                return ExpenseCard(expense: expenses[index]);
               },
             ),
           ),
