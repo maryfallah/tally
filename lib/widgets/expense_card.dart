@@ -5,28 +5,47 @@ import 'package:tally/models/category.dart';
 import 'package:tally/models/expense.dart';
 
 class ExpenseCard extends StatelessWidget {
-  const ExpenseCard({super.key, required this.expense});
+  const ExpenseCard({
+    super.key,
+    required this.expense,
+    required this.onExpenseDismissed,
+  });
 
   final Expense expense;
+  final ValueChanged<Expense> onExpenseDismissed;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(2),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          children: [
-            Row(
-              children: [
-                Icon(expense.category.icon, size: 20),
-                const SizedBox(width: 8),
-                Text(expense.category.name),
-              ],
-            ),
-            Spacer(),
-            Text('€${expense.amount.formattedCurrency}'),
-          ],
+    return Dismissible(
+      key: ValueKey(expense),
+      direction: DismissDirection.endToStart,
+      onDismissed: (direction) {
+        onExpenseDismissed(expense);
+      },
+      // shows a delete background
+      background: Container(
+        color: Colors.red,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 20),
+        child: const Icon(Icons.delete, color: Colors.white),
+      ),
+      child: Card(
+        margin: EdgeInsets.all(2),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Row(
+                children: [
+                  Icon(expense.category.icon, size: 20),
+                  const SizedBox(width: 8),
+                  Text(expense.category.name),
+                ],
+              ),
+              Spacer(),
+              Text('€${expense.amount.formattedCurrency}'),
+            ],
+          ),
         ),
       ),
     );

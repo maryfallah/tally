@@ -56,12 +56,21 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.builder(
               itemCount: expenses.length,
               itemBuilder: (context, index) {
-                return ExpenseCard(expense: expenses[index]);
+                return ExpenseCard(
+                  expense: expenses[index],
+                  onExpenseDismissed: _removeExpense,
+                );
               },
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _removeExpense(Expense expense) {
+    setState(() {
+      expenses.remove(expense);
+    });
   }
 }
