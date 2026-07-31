@@ -35,4 +35,37 @@ extension CategoryExtension on Category {
         return Icons.fitness_center;
     }
   }
+
+  Color get color {
+    switch (this) {
+      case Category.groceries:
+        return const Color(0xFF4CAF50);
+      case Category.cafe:
+        return const Color(0xFF8D6E63);
+      case Category.transportation:
+        return const Color(0xFF42A5F5);
+      case Category.health:
+        return const Color(0xFFEF5350);
+      case Category.home:
+        return const Color(0xFF26A69A);
+      case Category.clothing:
+        return const Color(0xFFAB47BC);
+      case Category.leisure:
+        return const Color(0xFFFFB300);
+      case Category.travel:
+        return const Color(0xFF29B6F6);
+      case Category.education:
+        return const Color(0xFF5C6BC0);
+      case Category.pets:
+        return const Color(0xFFFF7043);
+      case Category.family:
+        return const Color(0xFFEC407A);
+      case Category.other:
+        return const Color(0xFF90A4AE);
+      case Category.gifts:
+        return const Color(0xFF7E57C2);
+      case Category.workout:
+        return const Color(0xFF26C6DA);
+    }
+  }
 }

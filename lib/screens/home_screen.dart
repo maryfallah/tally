@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tally/data/dummy_expenses.dart';
+import 'package:tally/models/category.dart';
 import 'package:tally/models/expense.dart';
 import 'package:tally/screens/add_expense_sheet.dart';
+import 'package:tally/widgets/chart.dart';
 import 'package:tally/widgets/expense_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,12 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [Text('Day   Month   Year')],
           ),
           const Center(child: Text("<       June 2026      >")),
+          SizedBox(height: 50),
 
-          Container(
-            width: 400,
-            height: 400,
-            color: Colors.blueGrey,
-            child: const Text('PIE CHART'),
+          SizedBox(
+            width: 250,
+            height: 250,
+            child: Chart(categoryTotals: _getCategoryTotals()),
           ),
 
           Expanded(
@@ -90,5 +92,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       );
+  }
+
+  Map<Category, double> _getCategoryTotals() {
+    final Map<Category, double> categoryTotals = {};
+    for (final expense in expenses) {
+      if (categoryTotals.containsKey(expense.category)) {
+        categoryTotals.update(
+          expense.category,
+          (currentTotal) => currentTotal + expense.amount,
+        );
+      } else {
+        categoryTotals[expense.category] = expense.amount;
+      }
+    }
+    return categoryTotals;
   }
 }
