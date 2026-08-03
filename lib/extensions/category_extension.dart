@@ -39,33 +39,46 @@ extension CategoryExtension on Category {
   Color get color {
     switch (this) {
       case Category.groceries:
-        return const Color(0xFF4CAF50);
+        return const Color(0xFF007200);
+
       case Category.cafe:
-        return const Color(0xFF8D6E63);
+        return const Color(0xFF99582A);
+
       case Category.transportation:
-        return const Color(0xFF42A5F5);
+        return const Color(0xFF90e0ef);
+
       case Category.health:
-        return const Color(0xFFEF5350);
+        return const Color(0xFFC1121F);
+
       case Category.home:
-        return const Color(0xFF26A69A);
+        return const Color(0xFF023e8a);
+
       case Category.clothing:
-        return const Color(0xFFAB47BC);
+        return const Color(0xFFe0aaff);
+
       case Category.leisure:
-        return const Color(0xFFFFB300);
+        return const Color(0xFFFFB703);
+
       case Category.travel:
-        return const Color(0xFF29B6F6);
+        return const Color(0xFFE85D04);
+
       case Category.education:
-        return const Color(0xFF5C6BC0);
+        return const Color(0xFFA7C957);
+
       case Category.pets:
-        return const Color(0xFFFF7043);
+        return const Color(0xFF7B2CBF);
+
       case Category.family:
-        return const Color(0xFFEC407A);
+        return const Color(0xFFFF579F);
+
       case Category.other:
-        return const Color(0xFF90A4AE);
+        return const Color(0xFF495057);
+
       case Category.gifts:
-        return const Color(0xFF7E57C2);
+        return const Color(0xFFffb3c1);
+
       case Category.workout:
-        return const Color(0xFF26C6DA);
+        return const Color(0xFF0077B6);
     }
   }
 }

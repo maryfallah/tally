@@ -37,7 +37,11 @@ class ExpenseCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(expense.category.icon, size: 20),
+                  Icon(
+                    expense.category.icon,
+                    size: 20,
+                    color: expense.category.color,
+                  ),
                   const SizedBox(width: 8),
                   Text(expense.category.name),
                 ],

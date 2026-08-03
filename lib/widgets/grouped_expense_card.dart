@@ -28,7 +28,11 @@ class GroupedExpenseCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(groupedExpense.category.icon, size: 20),
+                  Icon(
+                    groupedExpense.category.icon,
+                    size: 20,
+                    color: groupedExpense.category.color,
+                  ),
                   const SizedBox(width: 8),
                   Text(groupedExpense.category.name),
                 ],
