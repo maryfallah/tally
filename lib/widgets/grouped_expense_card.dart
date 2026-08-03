@@ -5,28 +5,38 @@ import 'package:tally/models/category.dart';
 import 'package:tally/models/grouped_expense.dart';
 
 class GroupedExpenseCard extends StatelessWidget {
-  const GroupedExpenseCard({super.key, required this.groupedExpense});
+  const GroupedExpenseCard({
+    super.key,
+    required this.groupedExpense,
+    required this.onCategorySelected,
+  });
 
   final GroupedExpense groupedExpense;
+  final ValueChanged<Category> onCategorySelected;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(2),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          children: [
-            Row(
-              children: [
-                Icon(groupedExpense.category.icon, size: 20),
-                const SizedBox(width: 8),
-                Text(groupedExpense.category.name),
-              ],
-            ),
-            Spacer(),
-            Text('€${groupedExpense.amount.formattedCurrency}'),
-          ],
+    return InkWell(
+      onTap: () {
+        onCategorySelected(groupedExpense.category);
+      },
+      child: Card(
+        margin: EdgeInsets.all(2),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Row(
+                children: [
+                  Icon(groupedExpense.category.icon, size: 20),
+                  const SizedBox(width: 8),
+                  Text(groupedExpense.category.name),
+                ],
+              ),
+              Spacer(),
+              Text('€${groupedExpense.amount.formattedCurrency}'),
+            ],
+          ),
         ),
       ),
     );

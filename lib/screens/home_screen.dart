@@ -4,6 +4,7 @@ import 'package:tally/models/category.dart';
 import 'package:tally/models/expense.dart';
 import 'package:tally/models/grouped_expense.dart';
 import 'package:tally/screens/add_expense_sheet.dart';
+import 'package:tally/screens/expense_details_screen.dart';
 import 'package:tally/widgets/chart.dart';
 import 'package:tally/widgets/grouped_expense_card.dart';
 
@@ -72,6 +73,20 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return GroupedExpenseCard(
                   groupedExpense: groupedExpenses[index],
+                  onCategorySelected: (category) {
+                    final filteredExpenses = expenses
+                        .where((expense) => expense.category == category)
+                        .toList();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ExpenseDetailsScreen(
+                          category: category,
+                          expenses: filteredExpenses,
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),
