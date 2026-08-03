@@ -9,7 +9,13 @@ import 'package:tally/widgets/chart.dart';
 import 'package:tally/widgets/grouped_expense_card.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    required this.onThemeToggle,
+    required this.isDarkMode,
+  });
+  final VoidCallback onThemeToggle;
+  final bool isDarkMode;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,12 +23,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Expense> expenses = [...dummyExpenses];
-
   @override
   Widget build(BuildContext context) {
     final groupedExpenses = _getGroupedExpenses();
     return Scaffold(
-      appBar: AppBar(title: Center(child: const Text('Tally'))),
+      appBar: AppBar(
+        title: Center(child: const Text('Tally')),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+            onPressed: widget.onThemeToggle,
+            iconSize: 30,
+            icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+          ),
+        ),
+      ),
 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
