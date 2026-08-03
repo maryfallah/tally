@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tally/data/dummy_expenses.dart';
 import 'package:tally/models/category.dart';
 import 'package:tally/models/expense.dart';
+import 'package:tally/models/grouped_expense.dart';
 import 'package:tally/screens/add_expense_sheet.dart';
 import 'package:tally/widgets/chart.dart';
 import 'package:tally/widgets/expense_card.dart';
@@ -18,28 +19,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final groupedExpenses = _getGroupedExpenses();
     return Scaffold(
       appBar: AppBar(title: const Text('Tally')),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final expense = await showModalBottomSheet<Expense>(
-            context: context,
-            isScrollControlled: true,
-            showDragHandle: true,
-            builder: (context) {
-              return const AddExpenseSheet();
-            },
-          );
 
-          if (expense != null) {
-            setState(() {
-              expenses.add(expense);
-            });
-          }
-        },
-        child: const Icon(Icons.add),
-      ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -51,12 +36,39 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             width: 250,
             height: 250,
-            child: Chart(categoryTotals: _getCategoryTotals()),
+            child: Stack(
+              children: [
+                Chart(categoryTotals: _getCategoryTotals()),
+                Positioned(
+                  right: 20,
+                  bottom: 10,
+                  child: FloatingActionButton(
+                    onPressed: () async {
+                      final expense = await showModalBottomSheet<Expense>(
+                        context: context,
+                        isScrollControlled: true,
+                        showDragHandle: true,
+                        builder: (context) {
+                          return const AddExpenseSheet();
+                        },
+                      );
+
+                      if (expense != null) {
+                        setState(() {
+                          expenses.add(expense);
+                        });
+                      }
+                    },
+                    child: const Icon(Icons.add),
+                  ),
+                ),
+              ],
+            ),
           ),
 
           Expanded(
             child: ListView.builder(
-              itemCount: expenses.length,
+              itemCount: groupedExpenses.length,
               itemBuilder: (context, index) {
                 return ExpenseCard(
                   expense: expenses[index],
@@ -107,5 +119,15 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
     return categoryTotals;
+  }
+
+  List<GroupedExpense> _getGroupedExpenses() {
+    final List<GroupedExpense> groupedExpense = [];
+    for (final expense in _getCategoryTotals().entries) {
+      groupedExpense.add(
+        GroupedExpense(category: expense.key, amount: expense.value),
+      );
+    }
+    return groupedExpense;
   }
 }
