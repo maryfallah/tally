@@ -5,7 +5,7 @@ import 'package:tally/models/expense.dart';
 import 'package:tally/models/grouped_expense.dart';
 import 'package:tally/screens/add_expense_sheet.dart';
 import 'package:tally/widgets/chart.dart';
-import 'package:tally/widgets/expense_card.dart';
+import 'package:tally/widgets/grouped_expense_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final groupedExpenses = _getGroupedExpenses();
     return Scaffold(
-      appBar: AppBar(title: const Text('Tally')),
+      appBar: AppBar(title: Center(child: const Text('Tally'))),
 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [Text('Day   Month   Year')],
           ),
           const Center(child: Text("<       June 2026      >")),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
 
           SizedBox(
             width: 250,
@@ -70,11 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.builder(
               itemCount: groupedExpenses.length,
               itemBuilder: (context, index) {
-                return ExpenseCard(
-                  expense: expenses[index],
-                  onExpenseDismissed: (expense) {
-                    _removeExpense(expense, index);
-                  },
+                return GroupedExpenseCard(
+                  groupedExpense: groupedExpenses[index],
                 );
               },
             ),

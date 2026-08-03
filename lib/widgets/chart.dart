@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:tally/extensions/category_extension.dart';
 import 'package:tally/models/category.dart';
-import 'package:tally/theme/theme_constants.dart';
 
 class Chart extends StatelessWidget {
   final Map<Category, double> categoryTotals;
